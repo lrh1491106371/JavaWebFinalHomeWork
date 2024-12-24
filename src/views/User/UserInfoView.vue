@@ -47,12 +47,7 @@
                         <el-input v-model="editUser.email"></el-input>
                     </el-form-item>
                     <el-form-item label="爱好">
-                        <el-select v-model="editUser.hobbies" multiple placeholder="选择爱好">
-                            <el-option label="阅读" value="阅读"></el-option>
-                            <el-option label="旅行" value="旅行"></el-option>
-                            <el-option label="编程" value="编程"></el-option>
-                            <el-option label="运动" value="运动"></el-option>
-                        </el-select>
+                        <el-input v-model="editUser.hobbies"></el-input>
                     </el-form-item>
                 </el-form>
             </div>

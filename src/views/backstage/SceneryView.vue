@@ -1,39 +1,8 @@
 <template>
     <div>
         <el-container>
-            <!-- Sidebar -->
-            <el-aside width="220px" style="background: #f5f7fa; box-shadow: inset -1px 0 0 #ebeef5;">
-                <el-menu :default-active="activeIndex" router>
-                    <el-menu-item index="/panel">
-                        <i class="el-icon-info"></i>
-                        <span>仪表盘</span>
-                    </el-menu-item>
-                    <el-menu-item index="/backHome">
-                        <i class="el-icon-info"></i>
-                        <span>首页管理</span>
-                    </el-menu-item>
-                    <el-menu-item index="/backCulture">
-                        <i class="el-icon-info"></i>
-                        <span>文化管理</span>
-                    </el-menu-item>
-                    <el-menu-item index="/backFood">
-                        <i class="el-icon-info"></i>
-                        <span>美食管理</span>
-                    </el-menu-item>
-                    <el-menu-item index="/BackScenery">
-                        <i class="el-icon-info"></i>
-                        <span>风景管理</span>
-                    </el-menu-item>
-                    <el-menu-item index="/BackUserInfo">
-                        <i class="el-icon-info"></i>
-                        <span>用户管理</span>
-                    </el-menu-item>
-                    <el-menu-item index="/BackFeedback">
-                        <i class="el-icon-info"></i>
-                        <span>反馈管理</span>
-                    </el-menu-item>
-                </el-menu>
-            </el-aside>
+            <!-- 使用封装好的导航栏组件 -->
+            <BackNavBar :activeIndex="activeIndex" />
 
             <!-- Main Content -->
             <el-container>
@@ -81,10 +50,13 @@
 </template>
 
 <script>
+import BackNavBar from "@/components/BackNavBar.vue"; // 引入封装好的导航栏组件
+
 export default {
+    components: { BackNavBar },
     data() {
         return {
-            activeIndex: "/BackScenery",
+            activeIndex: "/BackScenery", // 当前激活的导航栏菜单项
             filter: {
                 name: "",
                 best_season: "",

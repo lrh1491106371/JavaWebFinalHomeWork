@@ -4,37 +4,37 @@ const routes = [
   {
     path: "/",
     name: "login",
-    component: () => import("../views/LoginView.vue"),
+    component: () => import("../views/User/LoginView.vue"),
   },
   {
     path: "/home",
     name: "home",
-    component: () => import("../views/HomeView.vue"),
+    component: () => import("../views/Home/HomeView.vue"),
   },
   {
     path: "/culture",
     name: "culture",
-    component: () => import("../views/CultureView.vue"),
+    component: () => import("../views/Culture/CultureView.vue"),
   },
   {
     path: "/food",
     name: "food",
-    component: () => import("../views/FoodView.vue"),
+    component: () => import("../views/Food/FoodView.vue"),
   },
   {
     path: "/scenery",
     name: "scenery",
-    component: () => import("../views/SceneryView.vue"),
+    component: () => import("../views/Scenery/SceneryView.vue"),
   },
   {
     path: "/information",
     name: "information",
-    component: () => import("../views/UserInfoView.vue"),
+    component: () => import("../views/User/UserInfoView.vue"),
   },
   {
     path: "/feedback",
     name: "feedback",
-    component: () => import("../views/FeedbackView.vue"),
+    component: () => import("../views/Feedback/FeedbackView.vue"),
   },
   {
     path: "/panel",

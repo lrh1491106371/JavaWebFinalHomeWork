@@ -1,0 +1,95 @@
+/* 公共样式 */
+.scenery-view {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hot-destinations {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.main {
+    width: 1092px;
+    height: 534px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+.main li {
+    height: 100%;
+    flex: 1;
+    border: 1px solid #999;
+    position: relative;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.main li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.main li:hover img {
+    transform: scale(1.1);
+}
+
+.main:hover li {
+    flex: 0.9;
+    transition: all 0.5s ease;
+}
+
+.main li:hover {
+    flex: 3.5;
+}
+
+.flag {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.hot-strategies {
+    width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.strategy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.strategy-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

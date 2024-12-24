@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import NavBar from './views/components/NavBar.vue';
-import BackNavBar from './views/components/BackNavBar.vue';
+import NavBar from './components/NavBar.vue';
+import BackNavBar from './components/BackNavBar.vue';
 
 export default {
   components: {

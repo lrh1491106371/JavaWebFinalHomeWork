@@ -6,9 +6,9 @@
                 <form action="../index.html">
                     <h1>注册</h1>
                     <div class="social-container">
-                        <a href="#"><img src="../assets/images/30.png" width="40" height="40" /></a>
-                        <a href="#"><img src="../assets/images/31.png" width="40" height="40" /></a>
-                        <a href="#"><img src="../assets/images/32.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/30.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/31.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/32.png" width="40" height="40" /></a>
                     </div>
                     <span>或使用邮箱注册</span>
                     <input type="text" v-model="username" placeholder="账号名" />
@@ -24,9 +24,9 @@
                 <form action="../index.html">
                     <h1>登录</h1>
                     <div class="social-container">
-                        <a href="#"><img src="../assets/images/30.png" width="40" height="40" /></a>
-                        <a href="#"><img src="../assets/images/31.png" width="40" height="40" /></a>
-                        <a href="#"><img src="../assets/images/32.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/30.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/31.png" width="40" height="40" /></a>
+                        <a href="#"><img src="@/assets/images/32.png" width="40" height="40" /></a>
                     </div>
                     <span>或使用您的帐号</span>
                     <input type="email" v-model="loginEmail" placeholder="账号/电子邮箱" />
@@ -250,7 +250,7 @@ button.ghost {
 }
 
 .overlay {
-    background: url(../assets/images/17.jpg) no-repeat;
+    background: url(@/assets/images/17.jpg) no-repeat;
     color: #fff;
     position: relative;
     left: -100%;

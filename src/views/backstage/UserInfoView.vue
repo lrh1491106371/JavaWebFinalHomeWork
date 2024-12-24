@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import BackNavBar from "@/views/components/BackNavBar.vue";
+import BackNavBar from "@/components/BackNavBar.vue";
 
 export default {
     components: { BackNavBar },

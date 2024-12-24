@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import ColorfulText from "@/views/components/ColorfulText.vue"; // 引入组件
-import HistoryItem from "@/views/components/CultureItem.vue"; // 引入新的HistoryItem组件
+import ColorfulText from "@/components/ColorfulText.vue"; // 引入组件
+import HistoryItem from "@/components/CultureItem.vue"; // 引入新的HistoryItem组件
 
 export default {
     name: 'CultureView',
@@ -37,36 +37,36 @@ export default {
     data() {
         return {
             carouselImages: [
-                require("../assets/images/Culture/13.jpg"),
-                require("../assets/images/Culture/12.jpg"),
-                require("../assets/images/Culture/11.jpg"),
-                require("../assets/images/Culture/10.jpg"),
-                require("../assets/images/Culture/9.jpg"),
-                require("../assets/images/Culture/7.jpg"),
+                require("@/assets/images/Culture/13.jpg"),
+                require("@/assets/images/Culture/12.jpg"),
+                require("@/assets/images/Culture/11.jpg"),
+                require("@/assets/images/Culture/10.jpg"),
+                require("@/assets/images/Culture/9.jpg"),
+                require("@/assets/images/Culture/7.jpg"),
             ],
             sections: [
                 {
-                    image: require("../assets/images/Culture/10.jpg"),
+                    image: require("@/assets/images/Culture/10.jpg"),
                     title: "人间至味邂逅",
                     description: "描述内容1...",
                 },
                 {
-                    image: require("../assets/images/Culture/11.jpg"),
+                    image: require("@/assets/images/Culture/11.jpg"),
                     title: "巅越文化长廊",
                     description: "描述内容2...",
                 },
                 {
-                    image: require("../assets/images/Culture/12.jpg"),
+                    image: require("@/assets/images/Culture/12.jpg"),
                     title: "山海温州画卷",
                     description: "描述内容3...",
                 },
                 {
-                    image: require("../assets/images/Culture/10.jpg"),
+                    image: require("@/assets/images/Culture/10.jpg"),
                     title: "山海温州画卷",
                     description: "描述内容4...",
                 },
                 {
-                    image: require("../assets/images/Culture/11.jpg"),
+                    image: require("@/assets/images/Culture/11.jpg"),
                     title: "山海温州画卷",
                     description: "描述内容5...",
                 },

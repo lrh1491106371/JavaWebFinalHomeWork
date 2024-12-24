@@ -1,6 +1,7 @@
 <template>
-    <el-aside width="220px" style="background: #f5f7fa; box-shadow: inset -1px 0 0 #ebeef5;">
-        <el-menu v-model="localActiveIndex" @select="handleMenuSelect" :default-active="localActiveIndex">
+    <el-aside width="220px" style="background: #f5f7fa; box-shadow: inset -1px 0 0 #ebeef5; height: 100vh;">
+        <el-menu v-model="localActiveIndex" @select="handleMenuSelect" :default-active="localActiveIndex"
+            style="height: 100%; overflow-y: auto;">
             <el-menu-item index="/panel">
                 <i class="el-icon-info"></i>
                 <span>仪表盘</span>
@@ -69,5 +70,10 @@ export default {
     /* 高亮背景色 */
     color: #fff !important;
     /* 高亮文字色 */
+}
+
+.el-menu {
+    font-size: 14px;
+    /* 确保字体大小不变化 */
 }
 </style>

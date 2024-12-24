@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import ColorfulText from "./components/ColorfulText.vue"; // 引入ColorfulText组件
-import ScrollingAnimation from "./components/ScrollingAnimation.vue"; // 引入滚动动画组件
-import FoodCard from "./components/FoodCard.vue";
+import ColorfulText from "@/components/ColorfulText.vue"; // 引入ColorfulText组件
+import ScrollingAnimation from "@/components/ScrollingAnimation.vue"; // 引入滚动动画组件
+import FoodCard from "@/components/FoodCard.vue";
 
 export default {
     name: "FoodView",
