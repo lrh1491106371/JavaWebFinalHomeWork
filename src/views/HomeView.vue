@@ -1,5 +1,5 @@
 <template>
-    <div class="container"> 
+    <div class="container">
         <div class="cards">
             <div class="card" v-for="(item, index) in cardItems" :key="index">
                 <div v-if="item.text">{{ item.text }}</div>
@@ -14,37 +14,34 @@ export default {
     data() {
         return {
             cardItems: [
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: '/src/assets/1.jpg' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: '/src/assets/2.png' },
-                { img: '/src/assets/6.jpg' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: '/src/assets/logo.png' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: './05.png' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: './06.png' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { img: './07.png' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
-                { text: 'TEXT' },
+                { img: require('@/assets/images/HomeView/2.jpg') },
+                { text: '温州鱼丸' },
+                { text: '米面年糕' },
+                { text: '矾山肉燕' },
+                { img: require('@/assets/images/HomeView/1.jpg') },
+                { img: require('@/assets/images/HomeView/3.jpg') },
+                { text: '江心屿' },
+                { img: require('@/assets/images/HomeView/5.jpg') },
+                { img: require('@/assets/images/HomeView/6.jpg') },
+                { img: require('@/assets/images/HomeView/7.jpg') },
+                { img: require('@/assets/images/HomeView/4.jpg') },
+                { img: require('@/assets/images/HomeView/8.jpg') },
+                { img: require('@/assets/images/HomeView/9.jpg') },
+                { text: '洞头列岛' },
+                { img: require('@/assets/images/HomeView/10.jpg') },
+                { text: '雁荡山' },
+                { img: require('@/assets/images/HomeView/11.jpg') },
+                { text: '永嘉学派' },
+                { img: require('@/assets/images/HomeView/14.jpg') },
+                { mg: require('@/assets/images/HomeView/16.jpg') },
+                { text: '猪肉汤圆' },
+                { img: require('@/assets/images/HomeView/12.jpg') },
+                { text: '瓯绣工艺' },
+                { text: '米塑艺术' },
+                { text: '百丈漈' },
+                { img: require('@/assets/images/HomeView/15.jpg') },
+                { img: require('@/assets/images/HomeView/12.jpg') },
+                { text: '瓯窑文化' },
             ],
         };
     },
@@ -87,13 +84,20 @@ body {
     display: grid;
     gap: 2rem;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));/* 每列至少 250px */
-    justify-items: center; /* 水平居中 */
-    align-items: center;   /* 垂直居中 */
-    margin: 0 auto;        /* 保证容器居中 */
-    max-width: 100%;       /* 限制最大宽度 */
-    width: 100%;           /* 填满父容器宽度 */
-    padding: 0 20px;       /* 内边距，避免卡片贴边 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* 每列至少 250px */
+    justify-items: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    margin: 0 auto;
+    /* 保证容器居中 */
+    max-width: 100%;
+    /* 限制最大宽度 */
+    width: 100%;
+    /* 填满父容器宽度 */
+    padding: 0 20px;
+    /* 内边距，避免卡片贴边 */
 }
 
 .card {
@@ -123,7 +127,11 @@ body {
 
 .card img {
     width: 100%;
-    height: 100%;
+    height: 200px;
+    object-fit: cover;
+    /* 图片裁剪以填满卡片 */
+    border-radius: 10px;
+    /* 与卡片保持一致的圆角 */
 }
 
 .card:nth-of-type(4n) {

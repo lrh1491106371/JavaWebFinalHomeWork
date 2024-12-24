@@ -46,7 +46,7 @@ export default {
 /* 滚动文字变色效果 */
 .scroll-reveal {
     text-align: center;
-    padding: 15vh 0;
+    padding: 15vh 4rem;
     opacity: 0;
     /* 初始透明度为0 */
     transform: translateY(30px);

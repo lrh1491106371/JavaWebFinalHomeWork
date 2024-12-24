@@ -2,7 +2,7 @@
     <div class="foodview-container">
         <!-- 使用封装好的组件 -->
         <ColorfulText title="探索美食"
-            description="Discover the amazing food culture of Wenzhou. From fresh seafood to local snacks, every bite is a taste of history." />
+            description="温州美食以鲜香清淡为主，注重食材的原汁原味，代表菜品有鱼丸、麦虾、糯米饭等。鱼丸以鲜美滑嫩闻名，是宴席和家常餐桌上的必备美味；麦虾则是一种用面粉和海鲜制成的小吃，简单又地道。此外，温州还盛产海鲜，特色美食如三丝敲鱼和红烧鱼翅都展现了海洋城市的风味。还有像猪脏粉、小米糕等传统小吃，不仅价格亲民，还深受当地人喜爱。温州人的饮食习惯体现了对自然的热爱和生活的讲究，餐桌文化丰富多样。" />
 
         <!-- 引用滚动动画组件，并传递动态内容 -->
         <div class="scrolling-container">
@@ -33,28 +33,28 @@ export default {
     data() {
         return {
             // 动态的标签内容
-            tags: ["Food", "Cuisine", "Tasty", "Fresh", "Wenzhou", "Delicious", "Culture"],
+            tags: ["温州灯盏糕", "长人馄饨", "矾山肉燕", "温州糟羹", "海鲜面", "温州鸭舌", "苍南鱼面"],
 
             // 动态的图片内容，使用require来正确引入图片
             images: [
-                { src: require('@/assets/images/日喀则/1.jpg'), alt: "美食1" },
-                { src: require('@/assets/images/日喀则/10.jpg'), alt: "美食2" },
-                { src: require('@/assets/images/日喀则/11.jpg'), alt: "美食3" },
-                { src: require('@/assets/images/日喀则/12.jpg'), alt: "美食4" },
+                { src: require('@/assets/images/HomeView/11.jpg'), alt: "美食1" },
+                { src: require('@/assets/images/HomeView/12.jpg'), alt: "美食2" },
+                { src: require('@/assets/images/HomeView/14.jpg'), alt: "美食3" },
+                { src: require('@/assets/images/HomeView/15.jpg'), alt: "美食4" },
             ],
             foods: [
                 {
-                    imageSrc: require("@/assets/nuomifan.jpg"),
+                    imageSrc: require("@/assets/images/HomeView/11.jpg"),
                     title: "温州糯米饭",
                     description: "温州糯米饭是一道由糯米、油条和肉末汤组成的特色早点，是温州人的早餐首选。它历史悠久，文化底蕴深厚，深受人们喜爱。制作过程需精心操作，糯米饭软糯、油条酥脆、肉末汤鲜美，搭配丰富多样，成为温州人的一种生活方式。",
                 },
                 {
-                    imageSrc: require("@/assets/images/日喀则/10.jpg"),
+                    imageSrc: require("@/assets/images/HomeView/11.jpg"),
                     title: "妲己",
                     description: "远程消耗，攻击范围大",
                 },
                 {
-                    imageSrc: require("@/assets/images/日喀则/11.jpg"),
+                    imageSrc: require("@/assets/images/HomeView/12.jpg"),
                     title: "孙尚香",
                     description: "高爆发的射手英雄",
                 },
