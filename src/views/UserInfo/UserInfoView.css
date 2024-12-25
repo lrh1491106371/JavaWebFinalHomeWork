@@ -1,0 +1,95 @@
+.user-info-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #e4ebf1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.left-section {
+    max-width: 300px;
+}
+
+.avatar {
+    border-radius: 50%;
+    /* 确保头像是圆形 */
+    width: 120px;
+    /* 设置宽度 */
+    height: 120px;
+    /* 设置高度，确保宽高一致 */
+    object-fit: cover;
+    /* 保持图片内容比例 */
+    margin: 0 auto 20px;
+}
+
+.info-item {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.info-item label {
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.right-section h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+.right-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.el-button {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.el-button:hover {
+    background-color: #5a9bd4;
+    color: #fff;
+}
+
+.avatar-uploader {
+    display: block;
+    margin: 0 auto 20px;
+    width: 120px;
+    height: 120px;
+    border: 1px dashed #d9d9d9;
+    border-radius: 50%;
+    /* 确保上传区域是圆形 */
+    overflow: hidden;
+    /* 隐藏超出的图片部分 */
+    position: relative;
+    cursor: pointer;
+}
+
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c8c8c;
+    text-align: center;
+    line-height: 120px;
+}

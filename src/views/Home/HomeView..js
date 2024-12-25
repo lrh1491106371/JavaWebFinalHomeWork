@@ -1,0 +1,36 @@
+export default {
+  data() {
+    return {
+      cardItems: [
+        { img: require("@/assets/images/HomeView/2.jpg") },
+        { text: "温州鱼丸" },
+        { text: "米面年糕" },
+        { text: "矾山肉燕" },
+        { img: require("@/assets/images/HomeView/1.jpg") },
+        { img: require("@/assets/images/HomeView/3.jpg") },
+        { text: "江心屿" },
+        { img: require("@/assets/images/HomeView/5.jpg") },
+        { img: require("@/assets/images/HomeView/6.jpg") },
+        { img: require("@/assets/images/HomeView/7.jpg") },
+        { img: require("@/assets/images/HomeView/4.jpg") },
+        { img: require("@/assets/images/HomeView/8.jpg") },
+        { img: require("@/assets/images/HomeView/9.jpg") },
+        { text: "洞头列岛" },
+        { img: require("@/assets/images/HomeView/10.jpg") },
+        { text: "雁荡山" },
+        { img: require("@/assets/images/HomeView/11.jpg") },
+        { text: "永嘉学派" },
+        { img: require("@/assets/images/HomeView/14.jpg") },
+        { mg: require("@/assets/images/HomeView/16.jpg") },
+        { text: "猪肉汤圆" },
+        { img: require("@/assets/images/HomeView/12.jpg") },
+        { text: "瓯绣工艺" },
+        { text: "米塑艺术" },
+        { text: "百丈漈" },
+        { img: require("@/assets/images/HomeView/15.jpg") },
+        { img: require("@/assets/images/HomeView/12.jpg") },
+        { text: "瓯窑文化" },
+      ],
+    };
+  },
+};

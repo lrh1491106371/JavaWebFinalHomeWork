@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/",
     name: "login",
-    component: () => import("../views/User/LoginView.vue"),
+    component: () => import("../views/Login/LoginView.vue"),
   },
   {
     path: "/home",
@@ -29,7 +29,7 @@ const routes = [
   {
     path: "/information",
     name: "information",
-    component: () => import("../views/User/UserInfoView.vue"),
+    component: () => import("../views/UserInfo/UserInfoView.vue"),
   },
   {
     path: "/feedback",
@@ -49,22 +49,22 @@ const routes = [
   {
     path: "/backCulture",
     name: "backCulture",
-    component: () => import("../views/backstage/CultureView.vue"),
+    component: () => import("../views/backstage/Culture/CultureView.vue"),
   },
   {
     path: "/backFood",
     name: "backFood",
-    component: () => import("../views/backstage/FoodView.vue"),
+    component: () => import("../views/backstage/Food/FoodView.vue"),
   },
   {
     path: "/BackScenery",
     name: "BackScenery",
-    component: () => import("../views/backstage/SceneryView.vue"),
+    component: () => import("../views/backstage/Scenery/SceneryView.vue"),
   },
   {
     path: "/BackUserInfo",
     name: "BackUserInfo",
-    component: () => import("../views/backstage/UserInfoView.vue"),
+    component: () => import("../views/backstage/UserInfo/UserInfoView.vue"),
   },
   {
     path: "/BackFeedback",

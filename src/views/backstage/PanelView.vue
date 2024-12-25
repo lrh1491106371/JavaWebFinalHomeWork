@@ -9,7 +9,7 @@
         <el-header
           style="background: #fff; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
           <h3>仪表盘</h3>
-          <el-button type="primary" icon="el-icon-plus" @click="addUser">新增图表</el-button>
+          <el-button type="primary" icon="el-icon-plus" @click="back">返回登陆/注册</el-button>
         </el-header>
         正在开发中
       </el-container>

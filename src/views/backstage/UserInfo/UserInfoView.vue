@@ -33,9 +33,9 @@
 
                     <el-table :data="users" border style="width: 100%" v-loading="loading">
                         <el-table-column prop="id" label="用户编号" width="100"></el-table-column>
-                        <el-table-column prop="avatar" label="用户头像" width="120">
+                        <el-table-column prop="avatarUrl" label="用户头像" width="120">
                             <template #default="scope">
-                                <img :src="scope.row.avatar" alt="头像"
+                                <img :src="scope.row.avatarUrl" alt="头像"
                                     style="width: 40px; height: 40px; border-radius: 50%;" />
                             </template>
                         </el-table-column>
@@ -46,11 +46,12 @@
                                     }}</el-tag>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="department" label="邮箱"></el-table-column>
+                        <el-table-column prop="email" label="邮箱"></el-table-column>
                         <el-table-column prop="phone" label="手机号"></el-table-column>
                         <el-table-column prop="status" label="状态" width="120">
                             <template #default="scope">
-                                <el-switch v-model="scope.row.status" active-text="启用" inactive-text="禁用"></el-switch>
+                                <el-switch v-model="scope.row.status" active-text="启用" inactive-text="禁用"
+                                    @change="changeStatus(scope.row)"></el-switch>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作" width="180">
@@ -66,68 +67,5 @@
     </div>
 </template>
 
-<script>
-import BackNavBar from "@/components/BackNavBar.vue";
-
-export default {
-    components: { BackNavBar },
-    data() {
-        return {
-            activeIndex: "/BackUserInfo",
-            filter: {
-                username: "",
-                phone: "",
-                status: "",
-            },
-            loading: false,
-            users: [
-                {
-                    id: 1,
-                    avatar: "https://placekitten.com/40/40",
-                    username: "admin",
-                    gender: "男",
-                    department: "研发部门",
-                    phone: "158****6789",
-                    status: true,
-                },
-                {
-                    id: 2,
-                    avatar: "https://placekitten.com/40/40",
-                    username: "common",
-                    gender: "女",
-                    department: "测试部门",
-                    phone: "182****2345",
-                    status: true,
-                },
-            ],
-        };
-    },
-    methods: {
-        onSearch() {
-            console.log("搜索条件：", this.filter);
-        },
-        onReset() {
-            this.filter = { username: "", phone: "", status: "" };
-        },
-        addUser() {
-            console.log("新增用户");
-        },
-        editUser(user) {
-            console.log("编辑用户", user);
-        },
-        deleteUser(user) {
-            console.log("删除用户", user);
-        },
-    },
-};
-</script>
-
-<style scoped>
-.el-header {
-    border-bottom: 1px solid #ebeef5;
-}
-
-.el-main {
-    padding: 20px;
-}
-</style>
+<script src="./UserInfoView.js"></script>
+<style src="./UserInfoVIew.css" scoped></style>
