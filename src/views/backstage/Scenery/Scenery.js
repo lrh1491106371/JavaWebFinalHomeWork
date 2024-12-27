@@ -1,54 +1,110 @@
-import BackNavBar from "@/components/BackNavBar.vue"; // 引入封装好的导航栏组件
+import BackNavBar from "@/components/BackNavBar.vue";
+import {
+  fetchSceneryList,
+  addScenery,
+  updateScenery,
+  deleteSceneryById,
+} from "@/api/scenery"; // 使用封装好的 API
 
 export default {
   components: { BackNavBar },
   data() {
     return {
-      activeIndex: "/BackScenery", // 当前激活的导航栏菜单项
+      activeIndex: "/BackScenery",
       filter: {
         name: "",
-        best_season: "",
+        location: "",
       },
       loading: false,
-      sceneryList: [
-        {
-          id: 1,
-          name: "江心屿",
-          description: "中国十大最美小岛之一，风景如画。",
-          location: "温州市鹿城区",
-          best_season: "春秋",
-          image_url: "https://example.com/images/jiangxinyu.jpg",
-        },
-        {
-          id: 2,
-          name: "雁荡山",
-          description: "以奇峰怪石著称，世界地质公园。",
-          location: "温州市乐清市",
-          best_season: "全年",
-          image_url: "https://example.com/images/yandangshan.jpg",
-        },
-      ],
+      sceneries: [], // 用于存储风景数据
+      dialogVisible: false,
+      isEdit: false,
+      form: {
+        id: null,
+        name: "",
+        image_url: "",
+        location: "",
+        description: "",
+      },
     };
   },
   methods: {
+    // 获取风景数据
+    async fetchSceneries() {
+      this.loading = true;
+      try {
+        const response = await fetchSceneryList();
+        this.sceneries = response;
+      } catch (error) {
+        console.error("获取风景数据失败:", error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    // 搜索功能
     onSearch() {
-      console.log("搜索条件：", this.filter);
-      // 实际场景下应通过 API 请求过滤数据
+      this.fetchSceneries();
     },
+    // 重置搜索条件
     onReset() {
-      this.filter = { name: "", best_season: "" };
+      this.filter = { name: "", location: "" };
+      this.fetchSceneries();
     },
-    addScenery() {
-      console.log("新增风景");
-      // 弹窗或跳转页面新增风景
+    // 打开新增风景弹窗
+    openAddDialog() {
+      this.isEdit = false;
+      this.form = {
+        id: null,
+        name: "",
+        image_url: "",
+        location: "",
+        description: "",
+      };
+      this.dialogVisible = true;
     },
-    editScenery(scenery) {
-      console.log("编辑风景", scenery);
-      // 弹窗或跳转页面编辑风景
+    // 打开编辑风景弹窗
+    openEditDialog(scenery) {
+      this.isEdit = true;
+      this.form = { ...scenery };
+      this.dialogVisible = true;
     },
-    deleteScenery(scenery) {
-      console.log("删除风景", scenery);
-      // 确认框后执行删除操作
+    // 保存风景信息（新增或编辑）
+    async handleSave() {
+      try {
+        if (this.isEdit) {
+          await updateScenery(this.form);
+          this.$message.success("风景信息更新成功！");
+        } else {
+          await addScenery(this.form);
+          this.$message.success("风景信息新增成功！");
+        }
+        this.dialogVisible = false;
+        this.fetchSceneries();
+      } catch (error) {
+        console.error("保存风景信息失败:", error);
+        this.$message.error("操作失败，请重试！");
+      }
     },
+    // 删除风景信息
+    async deleteScenery(scenery) {
+      try {
+        await this.$confirm(`确定删除风景 "${scenery.name}" 吗？`, "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        });
+        await deleteSceneryById(scenery.id);
+        this.$message.success("风景信息删除成功！");
+        this.fetchSceneries();
+      } catch (error) {
+        if (error !== "cancel") {
+          console.error("删除风景信息失败:", error);
+          this.$message.error("删除失败，请重试！");
+        }
+      }
+    },
+  },
+  mounted() {
+    this.fetchSceneries(); // 页面加载时获取风景数据
   },
 };

@@ -30,11 +30,9 @@ export default {
     async loadCultureData() {
       try {
         const response = await fetchCultureList(); // 调用API获取文化列表
-        this.sections = response.map((section) => ({
-          image: section.imageUrl, // 后端返回的图片路径
-          title: section.title,
-          description: section.description,
-        }));
+        console.log("API 响应数据：", response); // 检查 API 返回值
+        this.sections = response; // 赋值给 sections
+        console.log("sections 数据已绑定：", this.sections);
       } catch (error) {
         console.error("加载文化数据失败：", error);
       }

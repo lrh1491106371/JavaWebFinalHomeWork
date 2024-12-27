@@ -1,13 +1,16 @@
-import { login, register } from "@/api/user"; // 引入用户API模块
+import { registerUser, loginUser } from "@/api/user";
 
 export default {
+  name: "LoginView",
   data() {
     return {
-      username: "", // 注册用的用户名
-      email: "", // 注册用的邮箱
-      password: "", // 注册用的密码
-      loginUsername: "", // 登录用的用户名
-      loginPassword: "", // 登录用的密码
+      // 注册表单数据
+      username: "",
+      email: "",
+      password: "",
+      // 登录表单数据
+      loginEmail: "",
+      loginPassword: "",
     };
   },
   methods: {
@@ -19,50 +22,31 @@ export default {
     showSignIn() {
       this.$refs.container.classList.remove("right-panel-active");
     },
-    // 注册方法
+    // 处理注册
     async handleRegister() {
-      const payload = {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      };
-
       try {
-        const response = await register(payload); // 调用注册API
-        console.log("注册成功:", response.data);
-        alert(response.data.message || "注册成功！");
-        this.showSignIn(); // 切换到登录界面
+        const response = await registerUser({
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        });
+        alert("注册成功：" + response.message);
       } catch (error) {
-        console.error("注册失败:", error.response?.data?.message || "未知错误");
-        alert(error.response?.data?.message || "注册失败，请稍后重试！");
+        alert("注册失败：" + (error.data?.message || "请重试"));
       }
     },
-    // 登录方法
+    // 处理登录
     async handleLogin() {
-      const payload = {
-        username: this.loginUsername,
-        password: this.loginPassword,
-      };
-
       try {
-        // 如果用户名是 admin 且密码是 123456，则直接跳转
-        if (payload.username === "admin" && payload.password === "123456") {
-          console.log("管理员登录成功");
-          this.$router.push("/panel"); // 跳转到管理员面板
-          return;
-        }
-
-        // 调用登录API
-        const response = await login(payload);
-        console.log("登录成功:", response.data);
-
-        const token = response.data.data; // 获取后端返回的 JWT
-        localStorage.setItem("token", token); // 保存到本地存储
-
-        this.$router.push("/panel"); // 跳转到面板页面
+        const response = await loginUser({
+          username: this.username,
+          password: this.password,
+        });
+        // alert("登录成功，Token：" + response.token);
+        localStorage.setItem("token", response.token);
+        this.$router.push("/home");
       } catch (error) {
-        console.error("登录失败:", error.response?.data?.message || "未知错误");
-        alert(error.response?.data?.message || "登录失败，请稍后重试！");
+        alert("登录失败：" + (error.data?.message || "请重试"));
       }
     },
   },

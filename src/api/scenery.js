@@ -1,44 +1,26 @@
-import request from "@/utils/request"; // 引入封装好的 Axios 实例
+import apiClient from "@/api/index"; // 引入封装好的 Axios 实例
 
-// 获取所有景点
-export function fetchSceneryList() {
-  return request({
-    url: "/scenery/list",
-    method: "get",
-  });
-}
+// 获取风景列表
+export const fetchSceneryList = () => {
+  return apiClient.get("http://localhost:8080/scenery/list");
+};
 
-// 根据 ID 获取单个景点详情
-export function fetchSceneryDetail(id) {
-  return request({
-    url: `/scenery/${id}`,
-    method: "get",
-  });
-}
+// 根据 ID 查询风景信息
+export const fetchSceneryById = (id) => {
+  return apiClient.get(`/scenery/${id}`);
+};
 
-// 新增景点
-export function addScenery(data) {
-  return request({
-    url: "/scenery",
-    method: "post",
-    data: data,
-  });
-}
+// 新增风景信息
+export const addScenery = (scenery) => {
+  return apiClient.post("/scenery/add", scenery);
+};
 
-// 更新景点信息
-export function updateScenery(id, data) {
-  return request({
-    url: `/scenery/${id}`,
-    method: "put",
-    data: data,
-  });
-}
+// 根据 ID 修改风景信息
+export const updateScenery = (scenery) => {
+  return apiClient.put("/scenery/update", scenery);
+};
 
-// 删除景点
-export function deleteScenery(id) {
-  return request({
-    url: `/scenery/${id}`,
-    method: "delete",
-  });
-}
-
+// 根据 ID 删除风景信息
+export const deleteSceneryById = (id) => {
+  return apiClient.delete(`/scenery/delete/${id}`);
+};

@@ -1,45 +1,26 @@
-import request from "@/utils/request"; // 引入封装好的 Axios 实例
+import apiClient from "@/api/index"; // 引入封装好的 Axios 实例
 
-// 获取所有用户
-export function fetchUserList() {
-  return request({
-    url: "/users",
-    method: "get",
-  });
-}
+// 获取用户列表
+export const fetchUserInfoList = () => {
+  return apiClient.get("http://localhost:8080/users/list");
+};
 
-// 根据 ID 获取单个用户详情
-export function fetchUserDetail(id) {
-  return request({
-    url: `/users/${id}`,
-    method: "get",
-  });
-}
+// 根据 ID 查询用户信息
+export const fetchUserInfoById = (id) => {
+  return apiClient.get(`/users/${id}`);
+};
 
-// 新增用户
-export function addUser(data) {
-  return request({
-    url: "/users",
-    method: "post",
-    data: data,
-  });
-}
+// 新增用户信息
+export const addUserInfo = (userInfo) => {
+  return apiClient.post("/users/add", userInfo);
+};
 
-// 更新用户信息
-export function updateUser(id, data) {
-  return request({
-    url: `/users/${id}`,
-    method: "put",
-    data: data,
-  });
-}
+// 根据 ID 修改用户信息
+export const updateUserInfo = (userInfo) => {
+  return apiClient.put("/users/update", userInfo);
+};
 
-// 删除用户
-export function deleteUser(id) {
-  return request({
-    url: `/users/${id}`,
-    method: "delete",
-  });
-}
-
-
+// 根据 ID 删除用户信息
+export const deleteUserInfoById = (id) => {
+  return apiClient.delete(`/users/delete/${id}`);
+};

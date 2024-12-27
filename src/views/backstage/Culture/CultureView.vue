@@ -9,7 +9,7 @@
                 <el-header
                     style="background: #fff; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
                     <h3>文化管理</h3>
-                    <el-button type="primary" icon="el-icon-plus" @click="addCulture">新增文化</el-button>
+                    <el-button type="primary" icon="el-icon-plus" @click="openAddDialog">新增文化</el-button>
                 </el-header>
                 <el-main>
                     <el-form :inline="true" :model="filter" class="demo-form-inline">
@@ -44,7 +44,7 @@
                         </el-table-column>
                         <el-table-column label="操作" width="180">
                             <template #default="scope">
-                                <el-button size="small" @click="editCulture(scope.row)">修改</el-button>
+                                <el-button size="small" @click="openEditDialog(scope.row)">修改</el-button>
                                 <el-button size="small" type="danger" @click="deleteCulture(scope.row)">删除</el-button>
                             </template>
                         </el-table-column>
@@ -52,6 +52,30 @@
                 </el-main>
             </el-container>
         </el-container>
+
+        <!-- 弹出框 -->
+        <el-dialog :title="isEdit ? '编辑文化' : '新增文化'" v-model:visible="dialogVisible" width="500px">
+            <el-form :model="form" ref="formRef">
+                <el-form-item label="文化名称" required>
+                    <el-input v-model="form.name" placeholder="请输入文化名称"></el-input>
+                </el-form-item>
+                <el-form-item label="图片 URL" required>
+                    <el-input v-model="form.image_url" placeholder="请输入图片链接"></el-input>
+                </el-form-item>
+                <el-form-item label="起源时期">
+                    <el-input v-model="form.origin_period" placeholder="请输入起源时期"></el-input>
+                </el-form-item>
+                <el-form-item label="描述">
+                    <el-input type="textarea" v-model="form.description" placeholder="请输入描述"></el-input>
+                </el-form-item>
+            </el-form>
+            <template v-slot:footer>
+                <div class="dialog-footer">
+                    <el-button @click="dialogVisible = false">取消</el-button>
+                    <el-button type="primary" @click="handleSave">保存</el-button>
+                </div>
+            </template>
+        </el-dialog>
     </div>
 </template>
 

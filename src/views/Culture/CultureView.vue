@@ -17,7 +17,7 @@
         <div class="container">
             <el-row :gutter="20">
                 <el-col :span="8" v-for="(section, index) in sections" :key="index">
-                    <HistoryItem :image="section.image" :title="section.title" :description="section.description" />
+                    <HistoryItem :imageUrl="section.imageUrl" :name="section.name" :description="section.description" :origin_period="origin_period" :cultural_impact="cultural_impact" />
                 </el-col>
             </el-row>
         </div>

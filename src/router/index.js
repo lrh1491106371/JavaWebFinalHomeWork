@@ -71,6 +71,11 @@ const routes = [
     name: "BackFeedback",
     component: () => import("../views/backstage/FeedbackView.vue"),
   },
+  {
+    path: "/test",
+    name: "test",
+    component: () => import("../views/testView.vue"),
+  },
 ];
 
 const router = createRouter({

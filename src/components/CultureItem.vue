@@ -1,10 +1,12 @@
 <template>
     <el-card shadow="always" class="history-item-card">
         <div class="history-item-container">
-            <img :src="image" class="section-image" alt="图片" />
+            <img :src="image_url" class="section-image" alt="图片" />
             <div class="text-content">
                 <h3>{{ title }}</h3>
                 <p>{{ description }}</p>
+                <p>{{ origin_period }}</p> <!-- 显示 origin_period -->
+                <p>{{ cultural_impact }}</p> <!-- 显示 cultural_impact -->
             </div>
         </div>
     </el-card>
@@ -14,7 +16,7 @@
 export default {
     name: 'HistoryItem',
     props: {
-        image: {
+        image_url: {
             type: String,
             required: true,
         },
@@ -23,6 +25,14 @@ export default {
             required: true,
         },
         description: {
+            type: String,
+            required: true,
+        },
+        origin_period: {
+            type: String,
+            required: true,
+        },
+        cultural_impact: {
             type: String,
             required: true,
         },
@@ -86,6 +96,18 @@ p {
     color: #666;
     line-height: 1.4;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.features {
+    margin-top: 10px;
+    color: #444;
+    font-weight: 500;
+}
+
+.rating {
+    margin-top: 5px;
+    color: #ff9800;
+    font-weight: bold;
 }
 
 /* 响应式适配 */

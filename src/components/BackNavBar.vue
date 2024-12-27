@@ -6,10 +6,6 @@
                 <i class="el-icon-info"></i>
                 <span>仪表盘</span>
             </el-menu-item>
-            <el-menu-item index="/backHome">
-                <i class="el-icon-info"></i>
-                <span>首页管理</span>
-            </el-menu-item>
             <el-menu-item index="/backCulture">
                 <i class="el-icon-info"></i>
                 <span>文化管理</span>

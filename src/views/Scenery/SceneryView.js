@@ -1,6 +1,6 @@
 import ColorfulText from "@/components/ColorfulText.vue";
 import StrategyItem from "@/components/StrategyItem.vue";
-import { fetchStrategyList } from "@/api/scenery"; // 引入动态攻略 API
+import { fetchSceneryList } from "@/api/scenery"; // 引入动态攻略 API
 
 export default {
   name: "SceneryView",
@@ -47,15 +47,10 @@ export default {
     // 获取动态攻略数据
     async fetchStrategies() {
       try {
-        const response = await fetchStrategyList();
-        const data = response.data;
-        // 解析 API 返回数据
-        this.strategies = data.map((item) => ({
-          title: item.title,
-          day1: item.day1,
-          day2: item.day2,
-          image: item.imageUrl,
-        }));
+        const response = await fetchSceneryList();
+        console.log("API 响应数据：", response); // 检查 API 返回值
+        this.strategies = response; // 赋值给 foods
+        console.log("foods 数据已绑定：", this.strategies);
       } catch (error) {
         console.error("获取攻略数据失败：", error);
       }

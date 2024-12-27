@@ -1,26 +1,39 @@
 <template>
     <div class="strategy-item">
         <div class="strategy-image-box">
-            <img :src="strategy.image" :alt="strategy.title" class="strategy-image" />
+            <img :src="image_url" :alt="name" class="strategy-image" />
         </div>
         <div class="strategy-content">
-            <h3 class="strategy-title">{{ strategy.title }}</h3>
-            <p class="strategy-description">{{ strategy.day1 }}</p>
-            <p class="strategy-description">{{ strategy.day2 }}</p>
-            <!-- <div class="strategy-stats">
-                <img :src="require('@/assets/images/18.png')" alt="Rating" class="strategy-rating" />
-                <img :src="require('@/assets/images/19.png')" alt="Likes" class="strategy-icon" /> 1251
-                <img :src="require('@/assets/images/20.png')" alt="Comments" class="strategy-icon" /> 784
-            </div> -->
+            <h3 class="strategy-title">{{ name }}</h3>
+            <p class="strategy-description">{{ location }}</p>
+            <p class="strategy-description">{{ best_season }}</p>
+            <p class="strategy-description">{{ description }}</p>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    name: "StrategyItem",
     props: {
-        strategy: {
-            type: Object,
+        image_url: {
+            type: String,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        location: {
+            type: String,
+            required: true,
+        },
+        best_season: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
             required: true,
         },
     },

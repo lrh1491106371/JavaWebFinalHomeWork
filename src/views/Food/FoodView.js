@@ -1,6 +1,6 @@
-import axios from "axios"; // 引入axios
-import ColorfulText from "@/components/ColorfulText.vue"; 
-import ScrollingAnimation from "@/components/ScrollingAnimation.vue"; 
+import { fetchFoodList } from "@/api/food"; // 引入API文件
+import ColorfulText from "@/components/ColorfulText.vue";
+import ScrollingAnimation from "@/components/ScrollingAnimation.vue";
 import FoodCard from "@/components/FoodCard.vue";
 
 export default {
@@ -27,20 +27,23 @@ export default {
         { src: require("@/assets/images/HomeView/14.jpg"), alt: "美食3" },
         { src: require("@/assets/images/HomeView/15.jpg"), alt: "美食4" },
       ],
-      foods: [], // 初始化为空数组
+      foods: [
+      ], // 初始化为空数组
     };
   },
   methods: {
     async fetchFoods() {
       try {
-        const response = await axios.get("/api/foods"); // 调用后端API
-        this.foods = response.data; // 将返回的数据赋值给foods
+        const response = await fetchFoodList(); // 调用 API
+        console.log("API 响应数据：", response); // 检查 API 返回值
+        this.foods = response; // 赋值给 foods
+        console.log("foods 数据已绑定：", this.foods);
       } catch (error) {
         console.error("获取foods数据失败:", error);
       }
     },
   },
   created() {
-    this.fetchFoods(); // 组件加载时调用fetchFoods方法
+    this.fetchFoods(); // 调用 fetchFoods 方法来发起 API 请求
   },
 };

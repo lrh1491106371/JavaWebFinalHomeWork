@@ -12,8 +12,8 @@
         <!-- Food介绍组件 -->
         <div class="container">
             <!-- 使用 FoodCard 组件 -->
-            <FoodCard v-for="(food, index) in foods" :key="index" :imageSrc="food.imageSrc" :title="food.title"
-                :description="food.description" />
+            <FoodCard v-for="(food, index) in foods" :key="index" :imageUrl="food.imageUrl" :name="food.name"
+                :description="food.description" :features="food.features" :rating="food.rating" />
         </div>
     </div>
 </template>

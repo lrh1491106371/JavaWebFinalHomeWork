@@ -1,10 +1,13 @@
 <template>
     <div class="card">
         <div class="img-box">
-            <img :src="imageSrc" :alt="title" />
+            <!-- 使用 :src 绑定图片 -->
+            <img :src="imageUrl" :alt="title" />
         </div>
         <p>{{ description }}</p>
-        <h2>{{ title }}</h2>
+        <h2>{{ name }}</h2>
+        <p>{{ features }}</p> <!-- 显示 features -->
+        <p>评分：{{ rating }}</p> <!-- 显示 rating -->
     </div>
 </template>
 
@@ -12,16 +15,24 @@
 export default {
     name: "FoodCard",
     props: {
-        imageSrc: {
+        imageUrl: {
             type: String,
             required: true,
         },
-        title: {
+        name: {
             type: String,
             required: true,
         },
         description: {
             type: String,
+            required: true,
+        },
+        features: {
+            type: String,
+            required: true,
+        },
+        rating: {
+            type: Number,
             required: true,
         },
     },
@@ -65,46 +76,6 @@ export default {
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
-}
-
-.img-box::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    right: -30px;
-    border-top-left-radius: 20px;
-    transform: translateY(-100px);
-    opacity: 0;
-    box-shadow: -5px -5px 0 4px var(--clr);
-    pointer-events: none;
-    transition: 0.5s;
-}
-
-.card:hover .img-box::after {
-    opacity: 1;
-    transform: translateY(50px);
-}
-
-.img-box::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    left: -30px;
-    border-top-right-radius: 20px;
-    transform: translateY(-100px);
-    opacity: 0;
-    box-shadow: 5px -5px 0 4px var(--clr);
-    pointer-events: none;
-    transition: 0.5s;
-}
-
-.card:hover .img-box::before {
-    opacity: 1;
-    transform: translateY(50px);
 }
 
 p {

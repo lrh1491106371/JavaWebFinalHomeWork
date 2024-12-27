@@ -14,7 +14,7 @@
                     <input type="text" v-model="username" placeholder="账号名" />
                     <input type="email" v-model="email" placeholder="电子邮箱" />
                     <input type="password" v-model="password" placeholder="密码" />
-                    <button type="button" @click="register">注册</button>
+                    <button type="button" @click="handleRegister">注册</button>
                 </form>
             </div>
 
@@ -28,9 +28,9 @@
                         <a href="#"><img src="@/assets/images/32.png" width="40" height="40" /></a>
                     </div>
                     <span>或使用您的帐号</span>
-                    <input type="email" v-model="loginEmail" placeholder="账号" />
-                    <input type="password" v-model="loginPassword" placeholder="密码" />
-                    <button type="button" @click="login">登录</button>
+                    <input type="email" v-model="username" placeholder="账号" />
+                    <input type="password" v-model="password" placeholder="密码" />
+                    <button type="button" @click="handleLogin">登录</button>
                 </form>
             </div>
 

@@ -1,43 +1,26 @@
-import request from "@/utils/request"; // 引入封装好的 Axios 实例
+import apiClient from "@/api/index"; // 引入封装好的 Axios 实例
 
-// 获取所有文化内容
-export function fetchCultureList() {
-  return request({
-    url: "/culture/list", // 后端接口路径
-    method: "get",
-  });
-}
+// 获取文化内容
+export const fetchCultureList = () => {
+  return apiClient.get("http://localhost:8080/culture/list");
+};
 
-// 根据 ID 获取单个文化内容详情
-export function fetchCultureDetail(id) {
-  return request({
-    url: `/culture/${id}`, // 动态传入 ID
-    method: "get",
-  });
-}
+// 根据 ID 查询文化信息
+export const fetchCultureById = (id) => {
+  return apiClient.get(`/culture/${id}`);
+};
 
-// 新增文化内容
-export function addCulture(data) {
-  return request({
-    url: "/culture", // POST 请求地址
-    method: "post",
-    data: data, // 请求体数据
-  });
-}
+// 新增文化信息
+export const addCulture = (culture) => {
+  return apiClient.post("/culture/add", culture);
+};
 
-// 更新文化内容信息
-export function updateCulture(id, data) {
-  return request({
-    url: `/culture/${id}`, // 动态传入 ID
-    method: "put",
-    data: data, // 请求体数据
-  });
-}
+// 根据 ID 修改文化信息
+export const updateCulture = (culture) => {
+  return apiClient.put("/culture/update", culture);
+};
 
-// 删除文化内容
-export function deleteCulture(id) {
-  return request({
-    url: `/culture/${id}`, // 动态传入 ID
-    method: "delete",
-  });
-}
+// 根据 ID 删除文化信息
+export const deleteCultureById = (id) => {
+  return apiClient.delete(`/culture/delete/${id}`);
+};
