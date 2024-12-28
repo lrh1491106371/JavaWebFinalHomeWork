@@ -1,19 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import getters from './getters'
-import app from './modules/app'
-import settings from './modules/settings'
-import user from './modules/user'
+import { createStore } from "vuex";
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  modules: {
-    app,
-    settings,
-    user
+const store = createStore({
+  state: {
+    userInfo: null, // 存储用户信息
   },
-  getters
-})
+  mutations: {
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo; // 设置用户信息
+    },
+    clearUserInfo(state) {
+      state.userInfo = null; // 清除用户信息
+    },
+  },
+  actions: {
+    setUserInfo({ commit }, userInfo) {
+      commit("setUserInfo", userInfo); // 提交mutation以更新用户信息
+    },
+    clearUserInfo({ commit }) {
+      commit("clearUserInfo"); // 提交mutation以清除用户信息
+    },
+  },
+  getters: {
+    userInfo: (state) => state.userInfo, // 获取用户信息
+  },
+});
 
-export default store
+export default store;

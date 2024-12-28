@@ -9,20 +9,16 @@ const apiClient = axios.create({
   },
 });
 
-// 请求拦截器
-apiClient.interceptors.request.use(
-  (config) => {
-    // 如果有 Token，统一添加到请求头
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+// 请求拦截器，自动附加 token
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`; // 附加 token
   }
-);
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
 // 响应拦截器
 apiClient.interceptors.response.use(

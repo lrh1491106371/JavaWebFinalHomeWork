@@ -1,4 +1,4 @@
-import { getUserById, updateUser } from "@/api/user"; // 引入 API 方法
+import { fetchUserInfoById, updateUser } from "@/api/user"; // 引入 API 方法
 
 export default {
   data() {
@@ -33,10 +33,10 @@ export default {
   },
   methods: {
     // 获取用户数据
-    async fetchUserData(userId) {
+    async fetchUserData(id) {
       this.loading = true;
       try {
-        const { data } = await getUserById(userId);
+        const { data } = await fetchUserInfoById(id);
         this.user = data; // 将后端数据赋值给 user
       } catch (error) {
         this.$message.error("获取用户数据失败！");
