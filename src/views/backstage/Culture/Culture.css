@@ -4,4 +4,11 @@
 
 .el-main {
     padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.el-dialog {
+    z-index: 1000;
+    /* 确保对话框显示在最前面 */
 }

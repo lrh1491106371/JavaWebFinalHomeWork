@@ -1,5 +1,6 @@
 import BackNavBar from "@/components/BackNavBar.vue";
-import { fetchFoodList, addFood, updateFood, deleteFoodById } from "@/api/food"; // 使用封装好的 API
+import { uploadImage } from "@/api/upload";
+import { fetchFoodList, addFood, updateFood, deleteFood } from "@/api/food"; // 使用封装好的 API
 
 export default {
   components: { BackNavBar },
@@ -8,30 +9,29 @@ export default {
       activeIndex: "/BackFood",
       filter: {
         name: "",
-        origin_region: "",
       },
       loading: false,
-      foods: [], // 用于存储食品数据
+      foods: [], // 用于存储美食数据
       dialogVisible: false,
       isEdit: false,
       form: {
         id: null,
         name: "",
         image_url: "",
-        origin_region: "",
+        rating: null,
         description: "",
       },
     };
   },
   methods: {
-    // 获取食品数据
+    // 获取美食数据
     async fetchFoods() {
       this.loading = true;
       try {
         const response = await fetchFoodList();
-        this.foods = response;
+        this.foods = response; // 根据返回数据结构调整
       } catch (error) {
-        console.error("获取食品数据失败:", error);
+        console.error("获取美食数据失败:", error);
       } finally {
         this.loading = false;
       }
@@ -42,64 +42,105 @@ export default {
     },
     // 重置搜索条件
     onReset() {
-      this.filter = { name: "", origin_region: "" };
+      this.filter = { name: "" };
       this.fetchFoods();
     },
-    // 打开新增食品弹窗
+    // 打开新增美食弹窗
     openAddDialog() {
       this.isEdit = false;
       this.form = {
         id: null,
         name: "",
         image_url: "",
-        origin_region: "",
+        rating: null,
         description: "",
       };
       this.dialogVisible = true;
     },
-    // 打开编辑食品弹窗
+
+    // 自定义上传方法
+    async uploadAvatar(options) {
+      const { file } = options;
+
+      try {
+        const response = await uploadImage(file); // 调用封装的 upload API
+        options.onSuccess(response.data, file); // 通知上传成功
+      } catch (error) {
+        console.error("图片上传失败:", error);
+        this.$message.error("图片上传失败");
+        options.onError(error); // 通知上传失败
+      }
+    },
+
+    // 成功回调，处理后端返回的值
+    handleAvatarSuccess(response) {
+      if (!response) {
+        return;
+      }
+      if (response.code === 1 && response.data) {
+        this.form.imageUrl = response.data; // 赋值图片 URL
+        this.$message.success("图片上传成功！");
+      } else {
+        this.$message.error(response.msg || "上传失败：未返回正确的 code 值！");
+      }
+    },
+
+    // 打开编辑美食弹窗
     openEditDialog(food) {
       this.isEdit = true;
       this.form = { ...food };
       this.dialogVisible = true;
     },
-    // 保存食品信息（新增或编辑）
+
+    // 保存美食信息（新增或编辑）
     async handleSave() {
       try {
+        if (typeof this.form.imageUrl === "object" && this.form.imageUrl.url) {
+          this.form.imageUrl = this.form.imageUrl.url;
+        } else if (typeof this.form.imageUrl !== "string") {
+          this.form.imageUrl = "";
+        }
+
+        const saveData = {
+          ...this.form,
+          image_url: this.form.imageUrl,
+        };
+
         if (this.isEdit) {
-          await updateFood(this.form);
-          this.$message.success("食品信息更新成功！");
+          await updateFood(saveData);
+          this.$message.success("美食信息更新成功！");
         } else {
-          await addFood(this.form);
-          this.$message.success("食品信息新增成功！");
+          await addFood(saveData);
+          this.$message.success("美食信息新增成功！");
         }
         this.dialogVisible = false;
         this.fetchFoods();
       } catch (error) {
-        console.error("保存食品信息失败:", error);
+        console.error("保存美食信息失败:", error);
         this.$message.error("操作失败，请重试！");
       }
     },
-    // 删除食品信息
+
+    // 删除美食信息
     async deleteFood(food) {
       try {
-        await this.$confirm(`确定删除食品 "${food.name}" 吗？`, "提示", {
+        await this.$confirm(`确定删除美食 "${food.name}" 吗？`, "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning",
         });
-        await deleteFoodById(food.id);
-        this.$message.success("食品信息删除成功！");
+        await deleteFood(food.id);
+        this.$message.success("美食信息删除成功！");
         this.fetchFoods();
       } catch (error) {
         if (error !== "cancel") {
-          console.error("删除食品信息失败:", error);
+          console.error("删除美食信息失败:", error);
           this.$message.error("删除失败，请重试！");
         }
       }
     },
   },
   mounted() {
-    this.fetchFoods(); // 页面加载时获取食品数据
+    this.fetchFoods(); // 页面加载时获取美食数据
   },
 };

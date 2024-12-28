@@ -16,9 +16,6 @@
                         <el-form-item label="文化名称">
                             <el-input v-model="filter.name" placeholder="请输入文化名称"></el-input>
                         </el-form-item>
-                        <el-form-item label="描述">
-                            <el-input v-model="filter.origin_period" placeholder="请输入描述"></el-input>
-                        </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSearch">搜索</el-button>
                             <el-button @click="onReset">重置</el-button>
@@ -27,14 +24,14 @@
 
                     <el-table :data="cultures" border style="width: 100%" v-loading="loading">
                         <el-table-column prop="id" label="编号" width="100"></el-table-column>
-                        <el-table-column prop="image_url" label="图片" width="120">
+                        <el-table-column prop="imageUrl" label="图片" width="120">
                             <template #default="scope">
-                                <img :src="scope.row.image_url" alt="文化图片"
+                                <img :src="scope.row.imageUrl" alt="文化图片"
                                     style="width: 60px; height: 60px; border-radius: 6px;" />
                             </template>
                         </el-table-column>
                         <el-table-column prop="name" label="文化名称"></el-table-column>
-                        <el-table-column prop="origin_period" label="起源时期" width="150"></el-table-column>
+                        <el-table-column prop="originPeriod" label="起源时期" width="150"></el-table-column>
                         <el-table-column prop="description" label="描述">
                             <template #default="scope">
                                 <el-tooltip class="item" effect="dark" :content="scope.row.description" placement="top">
@@ -54,16 +51,27 @@
         </el-container>
 
         <!-- 弹出框 -->
-        <el-dialog :title="isEdit ? '编辑文化' : '新增文化'" v-model:visible="dialogVisible" width="500px">
+        <el-dialog :title="isEdit ? '编辑文化' : '新增文化'" v-model="dialogVisible" width="500px">
             <el-form :model="form" ref="formRef">
                 <el-form-item label="文化名称" required>
                     <el-input v-model="form.name" placeholder="请输入文化名称"></el-input>
                 </el-form-item>
-                <el-form-item label="图片 URL" required>
-                    <el-input v-model="form.image_url" placeholder="请输入图片链接"></el-input>
+                <el-form-item label="图片">
+                    <el-upload class="avatar-uploader" action="uploadUrl" name="image" :show-file-list="false"
+                        :http-request="uploadAvatar" :on-success="handleAvatarSuccess"
+                        :before-upload="beforeAvatarUpload">
+                        <!-- 图片预览 -->
+                        <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar"
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px;" />
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                        <!-- 上传按钮 -->
+                        <el-button v-if="!form.imageUrl" size="small" type="primary" style="margin-top: 10px;">
+                            上传图片
+                        </el-button>
+                    </el-upload>
                 </el-form-item>
                 <el-form-item label="起源时期">
-                    <el-input v-model="form.origin_period" placeholder="请输入起源时期"></el-input>
+                    <el-input v-model="form.originPeriod" placeholder="请输入起源时期"></el-input>
                 </el-form-item>
                 <el-form-item label="描述">
                     <el-input type="textarea" v-model="form.description" placeholder="请输入描述"></el-input>

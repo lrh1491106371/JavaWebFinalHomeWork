@@ -38,6 +38,12 @@ export default {
     // 处理登录
     async handleLogin() {
       try {
+        // 判断是否是 admin 用户
+        if (this.username === "admin" && this.password === "123456") {
+          // 跳转到 /panel
+          this.$router.push("/panel");
+          return; // 阻止后续代码执行
+        }
         const response = await loginUser({
           username: this.username,
           password: this.password,

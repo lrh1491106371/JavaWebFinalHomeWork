@@ -21,14 +21,14 @@
             <p class="section-title">热门攻略</p>
             <p class="section-subtitle">Popular Strategies</p>
             <div class="strategy-list">
-            <!-- 按行显示策略 -->
+                <!-- 按行显示策略 -->
                 <div div class="strategy-row" v-for="(row, rowIndex) in chunkedStrategies" :key="rowIndex">
-                        <StrategyItem
-                            v-for="(strategy, index) in row" :key="index" :image_url="strategy.image_url" :name="strategy.name" :location="strategy.location" :best_season="strategy.best_season" :description="strategy.description"
-                        />
+                    <StrategyItem v-for="(strategy, index) in row" :key="index" :imageUrl="strategy.imageUrl"
+                        :name="strategy.name" :location="strategy.location" :bestSeason="strategy.bestSeason"
+                        :description="strategy.description" />
                 </div>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 

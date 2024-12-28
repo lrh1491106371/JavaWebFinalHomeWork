@@ -16,8 +16,8 @@
         <!-- 三栏内容 -->
         <div class="container">
             <el-row :gutter="20">
-                <el-col :span="8" v-for="(section, index) in sections" :key="index">
-                    <HistoryItem :imageUrl="section.imageUrl" :name="section.name" :description="section.description" :origin_period="origin_period" :cultural_impact="cultural_impact" />
+                <el-col :span="12" v-for="(section, index) in sections" :key="index">
+                    <HistoryItem :imageUrl="section.imageUrl" :name="section.name" :description="section.description" :originPeriod="section.originPeriod" :culturalImpact="section.culturalImpact" />
                 </el-col>
             </el-row>
         </div>

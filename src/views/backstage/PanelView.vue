@@ -34,6 +34,11 @@ export default {
       loading: false,
     };
   },
+  methods: {
+    back() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 

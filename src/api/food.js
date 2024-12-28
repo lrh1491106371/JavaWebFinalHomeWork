@@ -15,9 +15,9 @@ export const addFood = (food) => {
   return apiClient.post("/specialty/add", food);
 };
 
-// 编辑美食信息
-export const updateFood = (id, food) => {
-  return apiClient.put(`/specialty/update/${id}`, food);
+// 根据 ID 修改文化信息
+export const updateFood = (food) => {
+  return apiClient.put(`/specialty/update`, food);
 };
 
 // 删除美食

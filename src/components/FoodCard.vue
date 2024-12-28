@@ -4,10 +4,15 @@
             <!-- 使用 :src 绑定图片 -->
             <img :src="imageUrl" :alt="title" />
         </div>
-        <p>{{ description }}</p>
+        <p>{{ description }}
+            <br>
+            特点： {{ features }}
+            <br>
+            评分： {{ rating }}
+        </p>
         <h2>{{ name }}</h2>
-        <p>{{ features }}</p> <!-- 显示 features -->
-        <p>评分：{{ rating }}</p> <!-- 显示 rating -->
+        <!-- <p>{{ features }}</p> 
+        <p>评分：{{ rating }}</p>  -->
     </div>
 </template>
 
