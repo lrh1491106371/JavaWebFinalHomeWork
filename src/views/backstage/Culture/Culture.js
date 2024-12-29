@@ -164,9 +164,11 @@ export default {
         if (this.isEdit) {
           await updateCulture(saveData);
           this.$message.success("文化信息更新成功！");
+          this.page=1;
         } else {
           await addCulture(saveData);
           this.$message.success("文化信息新增成功！");
+          this.page = 1;
         }
         this.dialogVisible = false;
         this.fetchCultures();
