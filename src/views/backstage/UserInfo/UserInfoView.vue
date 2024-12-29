@@ -13,8 +13,8 @@
                 </el-header>
                 <el-main>
                     <el-form :inline="true" :model="filter" class="demo-form-inline">
-                        <el-form-item label="账号">
-                            <el-input v-model="filter.username" placeholder="请输入账号"></el-input>
+                        <el-form-item label="搜索内容">
+                            <el-input v-model="keyword" placeholder="请输入搜索内容"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSearch">搜索</el-button>
@@ -34,7 +34,8 @@
                         <el-table-column prop="name" label="姓名"></el-table-column>
                         <el-table-column prop="email" label="邮箱"></el-table-column>
                         <el-table-column prop="phone" label="电话"></el-table-column>
-                        <el-table-column prop="birthday" label="生日"></el-table-column>
+                        <el-table-column prop="birthday" label="生日" :formatter="formatDate">
+                        </el-table-column>
                         <el-table-column prop="hobbies" label="爱好"></el-table-column>
                         <el-table-column prop="resume" label="个人简介"></el-table-column>
                         <el-table-column label="操作" width="180">

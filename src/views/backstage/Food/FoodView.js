@@ -1,6 +1,12 @@
 import BackNavBar from "@/components/BackNavBar.vue";
 import { uploadImage } from "@/api/upload";
-import { fetchFoodList, addFood, updateFood, deleteFood } from "@/api/food"; // 使用封装好的 API
+import {
+  fetchFoodList,
+  addFood,
+  updateFood,
+  deleteFood,
+  searchFoodByKeyword,
+} from "@/api/food"; // 使用封装好的 API
 
 export default {
   components: { BackNavBar },
@@ -11,6 +17,7 @@ export default {
         name: "",
       },
       loading: false,
+      keyword: "", // 确保初始化为空字符串
       foods: [], // 用于存储美食数据
       dialogVisible: false,
       isEdit: false,
@@ -37,12 +44,24 @@ export default {
       }
     },
     // 搜索功能
-    onSearch() {
-      this.fetchFoods();
-    },
+    async onSearch() {
+          // 检查是否有关键词
+          if (this.keyword.trim()) {
+            try {
+              // 调用模糊搜索 API 获取搜索结果
+              const response = await searchFoodByKeyword(this.keyword);
+              this.foods = response; // 将结果存储到 `foods`
+            } catch (error) {
+              console.error("Error searching foods:", error);
+            }
+          } else {
+            // 如果没有关键词，可以选择返回所有数据，或者清空结果
+            this.foods = [];
+          }
+        },
     // 重置搜索条件
     onReset() {
-      this.filter = { name: "" };
+      this.keyword = ""; // 清空搜索条件
       this.fetchFoods();
     },
     // 打开新增美食弹窗

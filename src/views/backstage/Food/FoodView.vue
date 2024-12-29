@@ -13,8 +13,8 @@
         </el-header>
         <el-main>
           <el-form :inline="true" :model="filter" class="demo-form-inline">
-            <el-form-item label="美食名称">
-              <el-input v-model="filter.name" placeholder="请输入美食名称"></el-input>
+            <el-form-item label="搜索内容">
+              <el-input v-model="keyword" placeholder="请输入搜索内容"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSearch">搜索</el-button>
@@ -23,15 +23,21 @@
           </el-form>
 
           <el-table :data="foods" border style="width: 100%" v-loading="loading">
-            <el-table-column prop="id" label="编号" width="100"></el-table-column>
+            <el-table-column prop="id" label="编号" width="80"></el-table-column>
             <el-table-column prop="imageUrl" label="图片" width="120">
               <template #default="scope">
-                <img :src="scope.row.imageUrl" alt="美食图片"
-                  style="width: 60px; height: 60px; border-radius: 6px;" />
+                <img :src="scope.row.imageUrl" alt="美食图片" style="width: 60px; height: 60px; border-radius: 6px;" />
               </template>
             </el-table-column>
-            <el-table-column prop="name" label="美食名称"></el-table-column>
-            <el-table-column prop="rating" label="评分" width="120"></el-table-column>
+            <el-table-column prop="name" label="美食名称" width="120"></el-table-column>
+            <el-table-column prop="rating" label="评分" width="80"></el-table-column>
+            <el-table-column prop="features" label="特点">
+              <template #default="scope">
+                <el-tooltip class="item" effect="dark" :content="scope.row.features" placement="top">
+                  <span>{{ scope.row.features.slice(0, 20) }}...</span>
+                </el-tooltip>
+              </template>
+            </el-table-column>
             <el-table-column prop="description" label="描述">
               <template #default="scope">
                 <el-tooltip class="item" effect="dark" :content="scope.row.description" placement="top">
@@ -58,8 +64,7 @@
         </el-form-item>
         <el-form-item label="图片">
           <el-upload class="avatar-uploader" action="uploadUrl" name="image" :show-file-list="false"
-            :http-request="uploadAvatar" :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
+            :http-request="uploadAvatar" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
             <!-- 图片预览 -->
             <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar"
               style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px;" />
@@ -72,6 +77,9 @@
         </el-form-item>
         <el-form-item label="评分">
           <el-input v-model="form.rating" placeholder="请输入评分" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="特点">
+          <el-input v-model="form.features" placeholder="请输入描述"></el-input>
         </el-form-item>
         <el-form-item label="描述">
           <el-input type="textarea" v-model="form.description" placeholder="请输入描述"></el-input>

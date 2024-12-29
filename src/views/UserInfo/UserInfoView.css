@@ -73,6 +73,17 @@
     color: #fff;
 }
 
+.avatar img {
+    width: 100px;
+    /* 设置宽度为 100px */
+    height: 100px;
+    /* 设置高度为 100px */
+    object-fit: cover;
+    /* 确保图片不会变形，并裁剪超出部分 */
+    border-radius: 50%;
+    /* 如果想要圆形头像，可以使用这个 */
+}
+
 .avatar-uploader {
     display: block;
     margin: 0 auto 20px;

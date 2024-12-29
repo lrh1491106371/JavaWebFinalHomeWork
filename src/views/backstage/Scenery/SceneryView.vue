@@ -13,8 +13,8 @@
                 </el-header>
                 <el-main>
                     <el-form :inline="true" :model="filter" class="demo-form-inline">
-                        <el-form-item label="风景名称">
-                            <el-input v-model="filter.name" placeholder="请输入风景名称"></el-input>
+                        <el-form-item label="搜索内容">
+                            <el-input v-model="keyword" placeholder="请输入搜索内容"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSearch">搜索</el-button>

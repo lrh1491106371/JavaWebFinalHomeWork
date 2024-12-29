@@ -48,15 +48,17 @@ export default {
           username: this.username,
           password: this.password,
         });
-        // alert("登录成功，Token：" + response.token);
-        localStorage.setItem("token", response.token);
+        // 假设后端返回的数据包含 token 和用户信息
+        const token = response.token; // 获取 token
+        const userInfo = response.userInfo; // 获取用户信息
+
+        // 将 token 和用户信息存储到 localStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo)); // 存储用户信息
+
+        // 跳转到主页
         this.$router.push("/home");
 
-        // 假设登录成功后，返回的数据中包含用户ID
-        const id = response.id;
-
-        // 登录成功后，获取用户信息
-        this.getUserInfo(id);
       } catch (error) {
         alert("登录失败：" + (error.data?.message || "请重试"));
       }

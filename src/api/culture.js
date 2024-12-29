@@ -24,3 +24,17 @@ export const updateCulture = (culture) => {
 export const deleteCultureById = (id) => {
   return apiClient.delete(`/culture/delete/${id}`);
 };
+
+// 模糊搜索文化数据
+export const searchCultureByKeyword = (keyword) => {
+  return apiClient.get("/culture/searchCulture", {
+    params: { keyword },
+  });
+};
+
+// 获取文化内容（分页）
+export const fetchCultureList2 = (page = 1, pageSize = 10) => {
+  return apiClient.get("/culture/page", {
+    params: { page, pageSize },
+  });
+};

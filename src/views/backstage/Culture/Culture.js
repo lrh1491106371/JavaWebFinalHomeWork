@@ -1,10 +1,11 @@
 import BackNavBar from "@/components/BackNavBar.vue";
 import { uploadImage } from "@/api/upload";
 import {
-  fetchCultureList,
+  fetchCultureList2,
   addCulture,
   updateCulture,
   deleteCultureById,
+  searchCultureByKeyword,
 } from "@/api/culture"; // 使用封装好的 API
 
 export default {
@@ -17,6 +18,7 @@ export default {
         origin_period: "",
       },
       loading: false,
+      keyword: "", // 确保初始化为空字符串
       cultures: [], // 用于存储文化数据
       dialogVisible: false,
       isEdit: false,
@@ -27,29 +29,72 @@ export default {
         origin_period: "",
         description: "",
       },
+      total: 0, // 数据总数
+      page: 1, // 当前页码
+      pageSize: 5, // 每页显示条数
     };
   },
   methods: {
     // 获取文化数据
-    async fetchCultures() {
+    // async fetchCultures() {
+    //   this.loading = true;
+    //   try {
+    //     const response = await fetchCultureList();
+    //     this.cultures = response;
+    //   } catch (error) {
+    //     console.error("获取文化数据失败:", error);
+    //   } finally {
+    //     this.loading = false;
+    //   }
+    // },
+
+    // 获取文化数据（分页）
+    async fetchCultures(page = 1, pageSize = 5) {
       this.loading = true;
       try {
-        const response = await fetchCultureList();
-        this.cultures = response;
+        const response = await fetchCultureList2(page, pageSize);
+        this.cultures = response.rows; // 数据列表
+        this.total = response.total; // 总条数
       } catch (error) {
         console.error("获取文化数据失败:", error);
       } finally {
         this.loading = false;
       }
     },
+
+    // 页码变化
+    handlePageChange(newPage) {
+      this.page = newPage;
+      this.fetchCultures(this.page, this.pageSize); // 重新获取数据
+    },
+    // 每页条数变化
+    handlePageSizeChange(newPageSize) {
+      this.pageSize = newPageSize;
+      this.page = 1; // 重置到第一页
+      this.fetchCultures(this.page, this.pageSize); // 重新获取数据
+    },
+
     // 搜索功能
-    onSearch() {
-      this.fetchCultures();
+    async onSearch() {
+      // 检查是否有关键词
+      if (this.keyword.trim()) {
+        try {
+          // 调用模糊搜索 API 获取搜索结果
+          const response = await searchCultureByKeyword(this.keyword);
+          this.cultures = response; // 将结果存储到 `cultures`
+        } catch (error) {
+          console.error("Error searching cultures:", error);
+        }
+      } else {
+        // 如果没有关键词，可以选择返回所有数据，或者清空结果
+        this.cultures = [];
+      }
     },
     // 重置搜索条件
     onReset() {
-      this.filter = { name: "", origin_period: "" };
+      this.keyword = ""; // 清空搜索条件
       this.fetchCultures();
+      this.page=1;
     },
     // 打开新增文化弹窗
     openAddDialog() {
@@ -150,6 +195,8 @@ export default {
     },
   },
   mounted() {
-    this.fetchCultures(); // 页面加载时获取文化数据
+    // this.fetchCultures(); // 页面加载时获取文化数据
+    this.fetchCultures(this.currentPage, this.pageSize); // 页面加载时获取文化数据（分页）
+    console.log(this.total, this.page, this.pageSize);
   },
 };

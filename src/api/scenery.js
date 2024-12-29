@@ -24,3 +24,10 @@ export const updateScenery = (scenery) => {
 export const deleteSceneryById = (id) => {
   return apiClient.delete(`/scenery/delete/${id}`);
 };
+
+// 模糊搜索美食数据
+export const searchSceneryByKeyword = (keyword) => {
+  return apiClient.get("/scenery/searchScenery", {
+    params: { keyword },
+  });
+};

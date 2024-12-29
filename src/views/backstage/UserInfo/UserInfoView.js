@@ -5,6 +5,7 @@ import {
   addUserInfo,
   updateUserInfo,
   deleteUserInfoById,
+  searchUserInfoByKeyword,
 } from "@/api/userinfo"; // 使用封装好的 API
 
 export default {
@@ -16,6 +17,7 @@ export default {
         username: "", // 用于搜索的过滤器
       },
       loading: false,
+      keyword: "", // 搜索关键词
       users: [], // 用于存储用户数据
       dialogVisible: false,
       isEdit: false,
@@ -34,6 +36,12 @@ export default {
     };
   },
   methods: {
+
+    formatDate(row, column, cellValue) {
+      if (!cellValue) return ''; // 如果没有值，返回空
+      const date = new Date(cellValue);
+      return date.toLocaleDateString('zh-CN'); // 格式化为中文日期格式
+    },
     // 获取用户数据
     async fetchUsers() {
       this.loading = true;
@@ -47,12 +55,24 @@ export default {
       }
     },
     // 搜索功能
-    onSearch() {
-      this.fetchUsers();
-    },
+    async onSearch() {
+          // 检查是否有关键词
+          if (this.keyword.trim()) {
+            try {
+              // 调用模糊搜索 API 获取搜索结果
+              const response = await searchUserInfoByKeyword(this.keyword);
+              this.users = response; // 将结果存储到 `users`
+            } catch (error) {
+              console.error("Error searching users:", error);
+            }
+          } else {
+            // 如果没有关键词，可以选择返回所有数据，或者清空结果
+            this.users = [];
+          }
+        },
     // 重置搜索条件
     onReset() {
-      this.filter = { username: "" };
+      this.keyword = ""; // 清空关键词
       this.fetchUsers();
     },
     // 打开新增用户弹窗

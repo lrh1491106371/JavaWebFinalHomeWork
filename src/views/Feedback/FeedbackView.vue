@@ -25,7 +25,7 @@
         <div class="developer-info">
             <h2>开发者信息</h2>
             <div class="info">
-                <img src="https://via.placeholder.com/80" alt="开发者头像" class="avatar" />
+                <img :src="require('@/assets/images/头像.pic.jpg')" alt="开发者头像" class="avatar" style="width: 100px;"/>
                 <div>
                     <p><strong>姓名：</strong>张三</p>
                     <p><strong>职位：</strong>前端开发工程师</p>

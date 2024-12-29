@@ -13,12 +13,19 @@
                 </el-header>
                 <el-main>
                     <el-form :inline="true" :model="filter" class="demo-form-inline">
-                        <el-form-item label="文化名称">
-                            <el-input v-model="filter.name" placeholder="请输入文化名称"></el-input>
+                        <el-form-item label="搜索内容">
+                            <el-input v-model="keyword" placeholder="请输入搜索内容"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSearch">搜索</el-button>
                             <el-button @click="onReset">重置</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                        <!-- 分页组件 -->
+                        <el-pagination style="text-align: right;" :current-page="page"
+                            :page-size="pageSize" :total="total" layout="prev, pager, next, sizes, total"
+                            :page-sizes="[5, 10, 20, 30, 40, 50, 100]" @current-change="handlePageChange"
+                            @size-change="handlePageSizeChange" />
                         </el-form-item>
                     </el-form>
 
@@ -30,8 +37,16 @@
                                     style="width: 60px; height: 60px; border-radius: 6px;" />
                             </template>
                         </el-table-column>
-                        <el-table-column prop="name" label="文化名称"></el-table-column>
+                        <el-table-column prop="name" label="文化名称" width="150"></el-table-column>
                         <el-table-column prop="originPeriod" label="起源时期" width="150"></el-table-column>
+                        <el-table-column prop="culturalImpact" label="文化影响力">
+                            <template #default="scope">
+                                <el-tooltip class="item" effect="dark" :content="scope.row.culturalImpact"
+                                    placement="top">
+                                    <span>{{ scope.row.culturalImpact.slice(0, 20) }}...</span>
+                                </el-tooltip>
+                            </template>
+                        </el-table-column>
                         <el-table-column prop="description" label="描述">
                             <template #default="scope">
                                 <el-tooltip class="item" effect="dark" :content="scope.row.description" placement="top">
@@ -47,8 +62,11 @@
                         </el-table-column>
                     </el-table>
                 </el-main>
+
             </el-container>
         </el-container>
+
+
 
         <!-- 弹出框 -->
         <el-dialog :title="isEdit ? '编辑文化' : '新增文化'" v-model="dialogVisible" width="500px">
@@ -72,6 +90,9 @@
                 </el-form-item>
                 <el-form-item label="起源时期">
                     <el-input v-model="form.originPeriod" placeholder="请输入起源时期"></el-input>
+                </el-form-item>
+                <el-form-item label="文化影响力">
+                    <el-input v-model="form.culturalImpact" placeholder="请输入文化影响力"></el-input>
                 </el-form-item>
                 <el-form-item label="描述">
                     <el-input type="textarea" v-model="form.description" placeholder="请输入描述"></el-input>

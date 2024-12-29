@@ -5,6 +5,7 @@ import {
   addScenery,
   updateScenery,
   deleteSceneryById,
+  searchSceneryByKeyword,
 } from "@/api/scenery";
 
 export default {
@@ -16,6 +17,7 @@ export default {
         name: "",
       },
       loading: false,
+      keyword: "", // 确保初始化为空字符串
       sceneries: [], // 用于存储风景数据
       dialogVisible: false,
       isEdit: false,
@@ -43,12 +45,24 @@ export default {
       }
     },
     // 搜索功能
-    onSearch() {
-      this.fetchSceneries();
-    },
+      async onSearch() {
+            // 检查是否有关键词
+            if (this.keyword.trim()) {
+              try {
+                // 调用模糊搜索 API 获取搜索结果
+                const response = await searchSceneryByKeyword(this.keyword);
+                this.sceneries = response;
+              } catch (error) {
+                console.error("Error searching sceneries:", error);
+              }
+            } else {
+              // 如果没有关键词，可以选择返回所有数据，或者清空结果
+              this.sceneries = [];
+            }
+          },
     // 重置搜索条件
     onReset() {
-      this.filter = { name: "" };
+      this.keyword = "";
       this.fetchSceneries();
     },
     // 打开新增风景弹窗

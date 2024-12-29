@@ -24,3 +24,10 @@ export const updateFood = (food) => {
 export const deleteFood = (id) => {
   return apiClient.delete(`/specialty/delete/${id}`);
 };
+
+// 模糊搜索美食数据
+export const searchFoodByKeyword = (keyword) => {
+  return apiClient.get("/specialty/searchSpecialty", {
+    params: { keyword },
+  });
+};

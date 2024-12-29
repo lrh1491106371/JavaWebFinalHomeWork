@@ -11,11 +11,14 @@ export const loginUser = async (data) => {
     // 调用后端登录接口
     const response = await apiClient.post("/login", data);
 
-    // 假设后端返回的 token 在 response.data.data
-    const token = response.data.data;
+    // 获取后端返回的 token 和 user 信息
+    const { token, user } = response.data;
 
     // 存储 token 到 localStorage
     localStorage.setItem("token", token);
+
+    // 存储用户信息到 localStorage
+    localStorage.setItem("user", JSON.stringify(user)); // 存储用户信息，记得转换为 JSON 字符串
 
     return response.data; // 返回登录结果
   } catch (error) {
